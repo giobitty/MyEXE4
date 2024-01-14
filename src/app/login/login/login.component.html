@@ -1,0 +1,29 @@
+
+<h1>{{title}}</h1>
+
+<form #myForm="ngForm" (ngSubmit)="loginPost()">
+  
+    <label for="nome">Nome</label><br>
+   
+    <input type="text" id="nome" name="nome" [(ngModel)]="utente.name" #myNome='ngModel' placeholder="Nome" minlength="4" required>
+    <br>
+  <ng-container *ngIf="myNome.invalid && (myNome.dirty || myNome.touched)">
+        <p *ngIf="myNome.errors?.['required']">Il campo è obbligatorio</p>
+        <p *ngIf="myNome.errors?.['minlength']">Il campo deve essere di almeno 4 caratteri</p>
+    </ng-container>
+    <br>
+    <label for="password">Password</label><br>
+    <input type="number" id="password" name="password" [(ngModel)]="utente.password" #myPassword='ngModel'  placeholder="Password" required>
+    <ng-container *ngIf="myPassword.invalid && (myPassword.dirty || myPassword.touched)">
+        <p *ngIf="myPassword.errors?.['required']">Il campo è obbligatorio</p>
+    </ng-container>
+    <br>   
+      <button type="submit" [disabled]="!myForm.valid">Invia</button>
+  </form>
+
+  <p *ngIf="myGlobalService.loggedUser">
+    <!--Interpoliamo il logged per stamparlo al Client-->
+    Benvenuto <strong>{{ myGlobalService.loggedUser.name }}</strong>!!
+</p>
+  
+  <hr>

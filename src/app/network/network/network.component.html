@@ -1,0 +1,11 @@
+<h1>{{title}}</h1>
+
+
+<div>
+
+    <ul *ngFor="let networkUser of globalService.networkUsers">
+     <li> <img src="{{urlImages}}{{networkUser.image}}.png" alt="Immagini profilo" style="border-radius: 50%; height: 150px;"> 
+      {{networkUser.name}} {{networkUser.surname}} {{networkUser.quote}}</li>
+    </ul>
+  </div>
+   

@@ -1,0 +1,24 @@
+<h1>{{ title }}</h1>
+<!--
+<div *ngIf="globalService.loggedUser.log === 'Si'">
+    <ng-container *ngFor="let user of globalService.networkUsers">
+      <p *ngIf="user.id == globalService.loggedUser.id">
+        <img src="{{urlImages}}{{user.image}}.png" alt="immagine profilo" style="border-radius: 50%; height: 223px;"><br>
+        <strong>Nome: </strong>{{user.name}} <br>
+        <strong>Cognome: </strong>{{user.surname}} <br>
+        <strong>Frase: </strong>{{user.quote}} <br>
+      </p>
+    </ng-container>
+</div>-->
+
+<div *ngIf="globalService.loggedUser && globalService.loggedUser.log=='Si'; else noProfile">
+    <ul>
+        <li *ngFor="let d of userProfileData">{{ d.note}} <button *ngIf="d.id_note>18"
+                (click)="deleteNote(d.id_note)">x</button></li>
+        <li>Add note <input type="text" name="note" size="36" maxlength="36" [(ngModel)]="note" required> <button
+                (click)="addNote()">+</button></li>
+    </ul>
+</div>
+<ng-template #noProfile>
+    <p>You must login!</p>
+</ng-template>
